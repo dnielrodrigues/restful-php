@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form id="form-login" method="post" action="#">
+        <div class="large-12 columns">
+            <input name="login" id="login" type="text" placeholder="Login">
+            <input name="pass" id="pass" type="password" placeholder="Senha">
+            <input type="submit" name="enviar" id="send" value="Enviar" class="small radius button" />
+        </div>
+    </form>
+
+    <p id="result"></p>
+
+    <script src="js/jquery.js"></script>
+
+    <script>
+        //FORM LOGIN
+        $("document").ready(function(){
+            $("#form-login").submit(function(){
+
+                //pega dados do formulário
+                dados = $(this).serialize();
+
+                //requisita no servidor
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "webservice/login.php",
+                    data: dados,
+                    success: function(data, status) {
+                        console.log(data);
+                        $('#result').html('resultado: ' + data.result);
+                    },
+                    error: function(xmlHttpRequest, status, err){
+                        console.log('erro: ' + err + err.parameters);
+                        $('#result').html('deu merda');
+                    }
+                });
+
+                //impede refresh da pagina
+                return false;
+
+            });
+        });
+    </script>
+
+</body>
+</html>
