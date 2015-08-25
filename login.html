@@ -13,11 +13,13 @@
             <input type="submit" name="enviar" id="send" value="Enviar" class="small radius button" />
         </div>
     </form>
-
-    <br><br><br>
-    <button id="local-store">Exibir armazenamento local</button>
-
+    
+    <br>
     <p id="result"></p>
+
+    <br>
+    <button id="local-store">Exibir armazenamento local</button>
+    <button id="delete-local-store">Deletar armazenamento local</button>
 
     <script src="js/jquery.js"></script>
 
@@ -64,6 +66,28 @@
                 //exibe
                 alert("usuário: " + user + "\n pass: " + pass);
             });
+
+            //REMOVER DADOS ARMAZENADOS
+            $("#delete-local-store").click(function(){
+                //deletar
+                window.localStorage.removeItem('user');
+                window.localStorage.removeItem('pass');
+                //exibe
+                alert("dados removidos");
+            });
+
+
+
+            /////// E SOBRE OS SESSION STORAGES????
+
+            // // Cria um item "usuario" com valor "Thiago Belem"
+            // window.sessionStorage.setItem('usuario', 'Thiago Belem');
+
+            // // Depois, em outra página ou aba, recupera esse item
+            // var usuario = window.sessionStorage.getItem('usuario');
+
+            // // Remove o item
+            // window.sessionStorage.removeItem('usuario');
         });
     </script>
 
