@@ -7,8 +7,8 @@ if ($_POST["login"] == 'teste' && $_POST["pass"] == 'teste') {
         "result" => true,
         "error" => "",
         "parameters" => array(
-            $_POST['login'],
-            $_POST['pass']
+            "user" => $_POST['login'],
+            "pass" => $_POST['pass']
         )
     );
     echo json_encode($result);
@@ -17,8 +17,8 @@ if ($_POST["login"] == 'teste' && $_POST["pass"] == 'teste') {
         "result" => false,
         "error" => 12,
         "parameters" => array(
-            $_POST['login'],
-            $_POST['pass']
+            "user" => $_POST['login'],
+            "pass" => $_POST['pass']
         )
     );
     echo json_encode($result);

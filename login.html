@@ -14,13 +14,17 @@
         </div>
     </form>
 
+    <br><br><br>
+    <button id="local-store">Exibir armazenamento local</button>
+
     <p id="result"></p>
 
     <script src="js/jquery.js"></script>
 
     <script>
-        //FORM LOGIN
         $("document").ready(function(){
+
+            //FORM LOGIN
             $("#form-login").submit(function(){
 
                 //pega dados do formulário
@@ -33,7 +37,12 @@
                     url: "webservice/login.php",
                     data: dados,
                     success: function(data, status) {
+                        //exibe o retorno no console
                         console.log(data);
+                        //salva os dados do usuario no localStorage
+                        window.localStorage.setItem('user', data.parameters.user);
+                        window.localStorage.setItem('pass', data.parameters.pass);
+                        //mensagem na tela
                         $('#result').html('resultado: ' + data.result);
                     },
                     error: function(xmlHttpRequest, status, err){
@@ -45,6 +54,15 @@
                 //impede refresh da pagina
                 return false;
 
+            });
+
+            //EXIBIR DADOS ARMAZENADOS
+            $("#local-store").click(function(){
+                //recupera dados
+                var user = window.localStorage.getItem('user');
+                var pass = window.localStorage.getItem('pass');
+                //exibe
+                alert("usuário: " + user + "\n pass: " + pass);
             });
         });
     </script>
