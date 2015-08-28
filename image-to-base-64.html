@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>image to base64</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>Login</h1>
+    <form id="form-login" method="post" action="#">
+        <input type='file' id="file-sended" />
+        <br>
+        <img id="img" src="" />
+        <br>
+        <div id="base"></div>
+    </form>
+
+    <script src="js/jquery.js"></script>
+
+    <script>
+
+        function readImage(input) {
+            if ( input.files && input.files[0] ) {
+                var FR= new FileReader();
+                FR.onload = function(e) {
+                    $('#img').attr( "src", e.target.result );
+                    $('#base').text( e.target.result );
+                };
+                FR.readAsDataURL( input.files[0] );
+            }
+        }
+
+        $("#file-sended").change(function(){
+            readImage( this );
+        });
+        
+    </script>
+
+</body>
+</html>

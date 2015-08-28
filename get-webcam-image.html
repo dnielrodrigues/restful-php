@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebCam Image</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>Web Cam</h1>
+    <script src="http://pixlcore.com/demos/webcamjs/webcam.js"></script>
+    <div id="results">A imagem capturada aparece aqui...</div>
+
+    <h1>WebcamJS Página de teste</h1>
+    <h3>Demonstração de uma captura e apresentação em 320x240</h3>
+
+    <div id="my_camera"></div>
+
+    <form>
+      <input type=button value="Tirar Snapshot" onClick="take_snapshot()">
+    </form>
+
+    <script src="js/jquery.js"></script>
+
+    <script>
+
+        function readImage(input) {
+            if ( input.files && input.files[0] ) {
+                var FR= new FileReader();
+                FR.onload = function(e) {
+                    $('#img').attr( "src", e.target.result );
+                    $('#base').text( e.target.result );
+                };
+                FR.readAsDataURL( input.files[0] );
+            }
+        }
+
+        $("#file-sended").change(function(){
+            readImage( this );
+        });
+        
+    </script>
+
+</body>
+</html>
